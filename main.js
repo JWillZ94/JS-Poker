@@ -3,10 +3,14 @@ const startBtn = document.getElementById("start-btn");
 // Modals ========================================
 
 const playModal = document.getElementById("play-modal");
+const playerTurnModal = document.getElementById("player-turn-modal");
 
 // Stats =========================================
 
 let deck;
+
+let bigBlind = document.getElementById("big-blind");
+let smBlind = document.getElementById("sm-blind");
 
 let playerCards = [];
 let playerHand = document.getElementById("player-hand");
@@ -31,7 +35,10 @@ startBtn.addEventListener("click", function() {
 
         dealPlayerCards();
         dealOpCards();
-        dealComCards();
+        flop();
+        turn();
+        river();
+
 
         function dealPlayerCards() {
           playerCards.push(deck[Math.floor(Math.random() * (deck.length - 1))]);
@@ -42,10 +49,10 @@ startBtn.addEventListener("click", function() {
 
           playerHand.innerHTML += `
             <div>
-              <img src=${playerCards[0].img} width="150">
+              <img src=${playerCards[0].img} width="80">
             </div>
             <div>
-              <img src=${playerCards[1].img} width="150">
+              <img src=${playerCards[1].img} width="80">
             </div>
           `;
         }
@@ -59,21 +66,15 @@ startBtn.addEventListener("click", function() {
 
           opHand.innerHTML += `
             <div>
-              <img src=${opCards[0].img} width="150">
+              <img src=${deck[deck.length - 1].img} width="80">
             </div>
             <div>
-              <img src=${opCards[1].img} width="150">
+              <img src=${deck[deck.length - 1].img} width="80">
             </div>
           `;
         }
 
-        function dealComCards() {
-          comCards.push(deck[Math.floor(Math.random() * (deck.length - 1))]);
-          deck.splice(deck.indexOf(comCards[comCards.length - 1]), 1);
-
-          comCards.push(deck[Math.floor(Math.random() * (deck.length - 1))]);
-          deck.splice(deck.indexOf(comCards[comCards.length - 1]), 1);
-
+        function flop() {
           comCards.push(deck[Math.floor(Math.random() * (deck.length - 1))]);
           deck.splice(deck.indexOf(comCards[comCards.length - 1]), 1);
 
@@ -85,19 +86,38 @@ startBtn.addEventListener("click", function() {
 
           comHand.innerHTML += `
             <div>
-              <img src=${comCards[0].img} width="150">
+              <img src=${comCards[0].img} width="80">
             </div>
             <div>
-              <img src=${comCards[1].img} width="150">
+              <img src=${comCards[1].img} width="80">
             </div>
             <div>
-              <img src=${comCards[2].img} width="150">
+              <img src=${comCards[2].img} width="80">
             </div>
+          `;
+
+          playerTurnModal.style.display = "block";
+          
+        }
+
+        function turn() {
+          comCards.push(deck[Math.floor(Math.random() * (deck.length - 1))]);
+          deck.splice(deck.indexOf(comCards[comCards.length - 1]), 1);
+
+          comHand.innerHTML += `
             <div>
-              <img src=${comCards[3].img} width="150">
+              <img src=${comCards[3].img} width="80">
             </div>
+          `;
+        }
+
+        function river() {
+          comCards.push(deck[Math.floor(Math.random() * (deck.length - 1))]);
+          deck.splice(deck.indexOf(comCards[comCards.length - 1]), 1);
+
+          comHand.innerHTML += `
             <div>
-              <img src=${comCards[4].img} width="150">
+              <img src=${comCards[4].img} width="80">
             </div>
           `;
         }

@@ -10,6 +10,20 @@
 <body>
   <h1>Les Play Pokahh</h1>
 
+  <div>
+    <p>Big blind: $<span id="big-blind"></span></p>
+    <p>Small blind: $<span id="sm-blind"></span></p>
+  </div>
+
+  <h3>Community Cards</h3>
+  <div id="com-cards" class="hand"></div>
+
+  <h3>Player Hand</h3>
+  <div id="player-hand" class="hand"></div>
+
+  <h3>Opponent Hand</h3>
+  <div id="op-hand" class="hand"></div>
+
   <div id="play-modal" class="modal">
     <div id="play-modal-content" class="modal-content">
       <p>Play Texas Hold'em?</p>
@@ -17,9 +31,14 @@
     </div>
   </div>
 
-  <div id="com-cards" class="hand"></div>
-  <div id="player-hand" class="hand"></div>
-  <div id="op-hand" class="hand"></div>
+  <div id="player-turn-modal" class="modal">
+    <div id="player-turn-modal-content" class="modal-content">
+      <p>Call, raise, or fold?</p>
+      <button id="call-btn">Call</button>
+      <button id="raise-btn">Raise</button>
+      <button id="fold-btn">Fold</button>
+    </div>
+  </div>
 
   <script src="main.js"></script>
 </body>
